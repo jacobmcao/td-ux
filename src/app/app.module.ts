@@ -10,10 +10,16 @@ import { CovalentHttpModule } from '@covalent/http';
 import { CovalentHighlightModule } from '@covalent/highlight';
 import { CovalentMarkdownModule } from '@covalent/markdown';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
+import { ConsumerComponent } from './consumer/consumer.component';
+import { AnalystComponent } from './analyst/analyst.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConsumerComponent,
+    AnalystComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
