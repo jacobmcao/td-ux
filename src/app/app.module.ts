@@ -22,12 +22,17 @@ import { ConsumerComponent } from './consumer/consumer.component';
 import { AnalystComponent } from './analyst/analyst.component';
 import { HomeComponent } from './home/home.component';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FormComponent } from './form/form.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ConsumerComponent,
     AnalystComponent,
-    HomeComponent
+    HomeComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +85,8 @@ import { HomeComponent } from './home/home.component';
     MatNativeDateModule,
     MatSliderModule,
     MatAutocompleteModule,
+    // NGX
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

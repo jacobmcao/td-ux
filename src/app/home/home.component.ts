@@ -1,5 +1,8 @@
-import { Component,  ChangeDetectionStrategy, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component,  ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, ContentChild } from '@angular/core';
 import { TdMediaService } from '@covalent/core/media';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry, MatDialog } from '@angular/material';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -7,79 +10,157 @@ import { TdMediaService } from '@covalent/core/media';
   styleUrls: ['./home.component.scss'],
   providers: [ TdMediaService ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
   title = 'app';
-
-  routes: Object[] = [{
-    icon: 'home',
-    route: '.',
-    title: 'Home',
-  }, {
-    icon: 'library_books',
-    route: '.',
-    title: 'Documentation',
-  }, {
-    icon: 'color_lens',
-    route: '.',
-    title: 'Style Guide',
-  }, {
-    icon: 'view_quilt',
-    route: '.',
-    title: 'Layouts',
-  }, {
-    icon: 'picture_in_picture',
-    route: '.',
-    title: 'Components & Addons',
-  },
+  context: any;
+  random: any;
+  contextualTitle: any = [{
+    title: 'BRK.A',
+    description: 'Berkshite Hathaway',
+  }
 ];
-usermenu: Object[] = [{
-    icon: 'swap_horiz',
-    route: '.',
-    title: 'Switch account',
-  }, {
-    icon: 'tune',
-    route: '.',
-    title: 'Account settings',
-  }, {
-    icon: 'exit_to_app',
-    route: '.',
-    title: 'Sign out',
-  },
+
+colorScheme: any = {
+  domain: ['#1565C0']
+};
+
+single: any = [
+  {
+    'name': 'Databases',
+    'value': 5,
+  }
+];
+
+
+
+
+  dateFrom: Date = new Date(new Date().getTime() - (2 * 60 * 60 * 24 * 1000));
+  dateTo: Date = new Date(new Date().getTime() - (1 * 60 * 60 * 24 * 1000));
+
+
+routes: Object[] = [{
+  icon: 'swap_horiz',
+  route: '.',
+  title: 'Switch to Analyst View',
+}
 ];
 navmenu: Object[] = [{
     icon: 'looks_one',
     route: '.',
-    title: 'First item',
-    description: 'Item description',
+    title: 'BRK.A',
+    description: 'Berkshite Hathaway',
   }, {
     icon: 'looks_two',
     route: '.',
-    title: 'Second item',
-    description: 'Item description',
+    title: 'SEB',
+    description: 'Seaboard',
   }, {
     icon: 'looks_3',
     route: '.',
-    title: 'Third item',
-    description: 'Item description',
+    title: 'NVR',
+    description: 'NVR',
   }, {
     icon: 'looks_4',
     route: '.',
-    title: 'Fourth item',
-    description: 'Item description',
+    title: 'GOOG',
+    description: 'Google',
   }, {
     icon: 'looks_5',
     route: '.',
-    title: 'Fifth item',
-    description: 'Item description',
+    title: 'PCLN',
+    description: 'Priceline.com',
   },
+  {
+    icon: 'looks_6',
+    route: '.',
+    title: 'WPO',
+    description: 'Washington Post Company',
+  }
 ];
 
-  constructor(public media: TdMediaService) { }
+times: any = [
+  {
+    'name': 'BRK.A',
+    'series': [
+      {
+        'value': 3.12,
+        'name': '1',
+      },
+      {
+        'value': 3.14,
+        'name': '2',
+      },
+      {
+        'value': 4.50,
+        'name': '3',
+      },
+      {
+        'value': 5.55,
+        'name': '4',
+      },
+      {
+        'value': 7.21,
+        'name': '5',
+      },
+      {
+        'value': 7.21,
+        'name': '6',
+      },
+      {
+        'value': 7.21,
+        'name': '7',
+      },
+      {
+        'value': 7.22,
+        'name': '8',
+      },
+      {
+        'value': 8.85,
+        'name': '9',
+      },
+      {
+        'value': 8.53,
+        'name': '10',
+      }
+    ]
+  }
+
+];
+  constructor(
+    public media: TdMediaService,
+    private _changeDetectorRef: ChangeDetectorRef,
+    //public dialog: MatDialog,
+    private _iconRegistry: MatIconRegistry,
+    private _domSanitizer: DomSanitizer){ 
+      
+    }
 
   ngOnInit() {
       console.log("Initialized Home Page");
+      
+  }
 
+  ngAfterViewInit(): void {
+    this.media.broadcast();
+    this._changeDetectorRef.detectChanges();
+    this.contextualTitle.title = "BRK.A";
+    this.contextualTitle.description = "Berkshite Hathaway";
+  }
 
+  globalId(parsedData) {
+    this.contextualTitle = parsedData;
+    //this.contextualTitle = [...this.contextualTitle];
+    console.log(parsedData);
+    this.randomizeTelem(this.times,parsedData);
+  }
+
+  randomizeTelem(newTimes, nameSelect){
+    newTimes[0].name = nameSelect.title;
+    for (var i = 0; i < newTimes[0].series.length; i++ ){
+      newTimes[0].series[i].value = Math.floor((Math.random() * 75) + 1);
+    };
+    this.times = newTimes;
+    this.times = [...this.times];
   }
 
 }

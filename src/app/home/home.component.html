@@ -1,129 +1,187 @@
-
-
-
-
+<div class="rounded-corners">
 <td-layout>
-  <td-navigation-drawer flex sidenavTitle="StockX Dashboard" logo="assets:teradata" name="Firstname Lastname" email="firstname.lastname@company.com">
-    <mat-nav-list>
-      <a *ngFor="let item of routes" mat-list-item><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
-    </mat-nav-list>
-    <div td-navigation-drawer-menu>
+    <td-navigation-drawer flex sidenavTitle="StockX Dashboard" name="Jacob Cao" email="jacob.cao@teradata.com">
       <mat-nav-list>
-        <a *ngFor="let item of usermenu" mat-list-item><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
+        <a *ngFor="let item of routes" mat-list-item><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
       </mat-nav-list>
-    </div>
-  </td-navigation-drawer>
-
-
-  <td-layout-nav color="accent">
-
-    <div td-toolbar-content layout="row" layout-align="start center" flex>
-      <button mat-icon-button td-menu-button tdLayoutToggle>
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span [routerLink]="['/']" class="cursor-pointer">StockX Dashboard</span>
-      <span flex></span>
-    </div>
-
-
-    <td-layout-manage-list #manageList
-            [opened]="media.registerQuery('gt-sm') | async"
-            [mode]="(media.registerQuery('gt-sm') | async) ? 'side' :  'over'"
-            [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
-      <mat-toolbar td-sidenav-content>
-        <span>Optional Title</span>
-      </mat-toolbar>
-      <mat-nav-list td-sidenav-content [tdLayoutManageListClose]="!media.query('gt-sm')">
-        <ng-template let-item let-last="last" ngFor [ngForOf]="navmenu">
-          <a mat-list-item>
-            <mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
-          </a>
-        </ng-template>
-      </mat-nav-list>
-      <mat-toolbar>
-        <div layout="row" layout-align="start center" flex>
-          <button mat-icon-button tdLayoutManageListOpen [hideWhenOpened]="true">
-            <mat-icon>arrow_back</mat-icon>
-          </button>
-          <span>Content Title</span>
-          <span flex></span>
-          <button mat-icon-button><mat-icon>settings</mat-icon></button>
-        </div>
-      </mat-toolbar>
-
-      
-      <div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
-        <div flex-gt-sm="60">
-          <mat-card>
-            <mat-card-title>Products Sales</mat-card-title>
-            <mat-card-subtitle>usage stats for our products</mat-card-subtitle>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-              card content
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-              <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
-                <span>View More</span>
-              </a>
-            </mat-card-actions>
-          </mat-card>
-          <mat-card>
-            <mat-card-title>Customer Activity</mat-card-title>
-            <mat-card-subtitle>Recent activity from select members</mat-card-subtitle>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-              card content
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-              <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
-                <span>View More</span>
-              </a>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-        <div flex-gt-sm="40">
-          <mat-card>
-            <mat-card-title>Alerts</mat-card-title>
-            <mat-card-subtitle>Items requiring attention</mat-card-subtitle>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-              card content
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-              <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
-                <span>View More</span>
-              </a>
-            </mat-card-actions>
-          </mat-card>
-          <mat-card>
-            <mat-card-title>Favorites</mat-card-title>
-            <mat-card-subtitle>Your favorite products</mat-card-subtitle>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-              card content
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-              <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
-                <span>View More</span>
-              </a>
-            </mat-card-actions>
-          </mat-card>
-        </div>
+    </td-navigation-drawer>
+  
+  
+    <td-layout-nav color="accent">
+  
+      <div td-toolbar-content layout="row" layout-align="start center" flex>
+        <button mat-icon-button td-menu-button tdLayoutToggle>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span [routerLink]="['/']" class="cursor-pointer">StockX Dashboard</span>
+        <span flex></span>
       </div>
+  
+  
+      <td-layout-manage-list #manageList
+              [opened]="media.registerQuery('gt-sm') | async"
+              [mode]="(media.registerQuery('gt-sm') | async) ? 'side' :  'over'"
+              [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
 
-    </td-layout-manage-list>
-    <td-layout-footer>
-      <div layout="row" layout-align="start center">
-        <span class="mat-caption">Copyright &copy; 2017 Teradata. All rights reserved</span>
-      </div>
-    </td-layout-footer>
-  </td-layout-nav>
-</td-layout>
+        <mat-toolbar td-sidenav-content>
+          <span>Tracking Assets</span>
+        </mat-toolbar>
+  
+        <!-- Main List -->
+        <mat-nav-list td-sidenav-content [tdLayoutManageListClose]="!media.query('gt-sm')">
+          <ng-template let-item let-last="last" ngFor [ngForOf]="navmenu">
+            <a mat-list-item (click)="globalId(item)">
+              <mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+            </a>
+          </ng-template>
+        </mat-nav-list>
+  
+  
+        <mat-toolbar>
+            <div td-toolbar-content flex layout="row" layout-align="start center">
+                <button mat-icon-button tdLayoutManageListToggle>
+                  <mat-icon>menu</mat-icon>
+                </button>
+                <span hide-xs>Consumer StockX</span>
+                <span flex></span>
+
+                
+                
+              </div>
+        </mat-toolbar>
+  
+        
+        <div flex layout-gt-sm="row" tdMediaToggle="gt-xs" layout-wrap [mediaClasses]="['push-sm']">
+          <div flex-gt-sm="50">
+  
+  
+            <mat-card>
+              <mat-card-title>
+                <div layout="row" layout-align="start center">
+                  <span flex>{{contextualTitle.title}} : Trending</span>
+                  <span>
 
 
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                  </span>
+                </div>
+              </mat-card-title>
+              <mat-divider></mat-divider>
+              <div [style.height.px]="280" class="push-top-sm">
+                  <ngx-charts-line-chart
+                    [scheme]="{ domain: [ '#4DD0E1', '#BA68C8', '#FF7043' ] }"
+                    [results]="times"
+                    [gradient]="gradient"
+                    [autoScale]="True"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [legend]="False"
+                    [showXAxisLabel]="true"
+                    [showYAxisLabel]="true"
+                    [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="yAxisLabel"
+                    [xAxisTickFormatting]="axisDate">
+                  </ngx-charts-line-chart>
+                </div>
+            </mat-card> 
+  
+            <mat-card>
+              <mat-toolbar>
+              <mat-card-title>{{contextualTitle.description}}</mat-card-title>
+            </mat-toolbar>
+
+              <mat-divider></mat-divider>
+              <mat-card-content>
+                  <mat-list>
+                      <h3 matSubheader>Metadata</h3>
+                      <mat-list-item>
+                        <mat-icon matListAvatar>account_box</mat-icon>
+                        <h4 matLine>Warren Buffett</h4>
+                        <p matLine>CEO</p>
+                      </mat-list-item>
+                      <mat-divider></mat-divider>
+                      <mat-list-item>
+                        <mat-icon matListAvatar>description</mat-icon>
+                        <h4 matLine>An Item Description</h4>
+                        <p matLine>Description</p>
+                      </mat-list-item>
+                      <mat-divider></mat-divider>
+                      <mat-list-item>
+                        <mat-icon matListAvatar>vpn_key</mat-icon>
+                        <h4 matLine>Data Data Data</h4>
+                        <p matLine>Something Related</p>
+                      </mat-list-item>
+<!--
+                      <mat-divider></mat-divider>
+                      <h3 matSubheader>Dates</h3>
+                      <mat-list-item>
+                        <mat-icon matListAvatar>access_time</mat-icon>
+                        <h4 matLine>Wed, July 6, 2016 11:13 AM</h4>
+                        <p matLine>Last Updated</p>
+                      </mat-list-item>
+                      <mat-divider matInset></mat-divider>
+                      <mat-list-item>
+                        <mat-icon matListAvatar>today</mat-icon>
+                        <h4 matLine>Wed, July 4, 2016 09:11 AM</h4>
+                        <p matLine>Created</p>
+                      </mat-list-item>
+-->
+
+                    </mat-list>
+                              
+              </mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-card-actions>
+                <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
+                  <span>View More</span>
+                </a>
+              </mat-card-actions>
+            </mat-card>
+  
+          </div>
+  
+  
+          <div flex-gt-sm="50">
+            <mat-card>
+                <!-- Separate toolbar delcared for button padding-->
+
+
+            <mat-toolbar>
+              <mat-card-title>Newsfeed</mat-card-title>
+              <span flex></span>
+              <button routerLink="/form" mat-raised-button color="primary" class="text-upper">New Post +</button>
+            </mat-toolbar>
+              
+
+
+              <mat-divider></mat-divider>
+              <mat-card-content>
+              
+
+                <div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+                  <mat-icon matListAvatar class="text-super push-bottom">chrome_reader_mode</mat-icon>
+                  <h2>No related news articles</h2>
+
+                </div>
+
+              
+              </mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-card-actions>
+                <a mat-button color="accent" class="text-upper" [routerLink]="['/']">
+                  <span>View More</span>
+                </a>
+              </mat-card-actions>
+            </mat-card>
+  
+          </div>
+        </div>
+  
+      </td-layout-manage-list>
+    </td-layout-nav>
+  </td-layout>
+  
+</div>
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  

@@ -32,7 +32,6 @@
  /* ------------------------------------------------------------------------------- */
  $foreground: map-get($theme, foreground);
  $background: map-get($theme, background);
- 
 
 
  // Apply theme for this app
@@ -117,4 +116,11 @@
      cursor: -moz-grabbing;
      cursor: -webkit-grabbing;
    }
+ }
+
+
+
+ rounded-corners{
+    border-radius: 5px;
+    padding: 10px;
  }
