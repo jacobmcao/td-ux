@@ -19,6 +19,8 @@ Page with the same data, just a different color and no additional buttons. Meant
 
 # Running and Building
 
+Run 'npm install' to grab dependencies.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
