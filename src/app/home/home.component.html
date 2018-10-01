@@ -6,7 +6,6 @@
       </mat-nav-list>
     </td-navigation-drawer>
   
-  
     <td-layout-nav color="accent">
   
       <div td-toolbar-content layout="row" layout-align="start center" flex>
@@ -56,16 +55,11 @@
   
   
             <mat-card>
-              <mat-card-title>
-                <div layout="row" layout-align="start center">
-                  <span flex>{{contextualTitle.title}} : Trending</span>
-                  <span>
-
-
-
-                  </span>
-                </div>
-              </mat-card-title>
+              
+                <mat-toolbar>
+                <mat-card-title>{{contextualTitle.title}} : Trending</mat-card-title> 
+                </mat-toolbar>
+            
               <mat-divider></mat-divider>
               <div [style.height.px]="280" class="push-top-sm">
                   <ngx-charts-line-chart
@@ -111,22 +105,6 @@
                         <h4 matLine>Data Data Data</h4>
                         <p matLine>Something Related</p>
                       </mat-list-item>
-<!--
-                      <mat-divider></mat-divider>
-                      <h3 matSubheader>Dates</h3>
-                      <mat-list-item>
-                        <mat-icon matListAvatar>access_time</mat-icon>
-                        <h4 matLine>Wed, July 6, 2016 11:13 AM</h4>
-                        <p matLine>Last Updated</p>
-                      </mat-list-item>
-                      <mat-divider matInset></mat-divider>
-                      <mat-list-item>
-                        <mat-icon matListAvatar>today</mat-icon>
-                        <h4 matLine>Wed, July 4, 2016 09:11 AM</h4>
-                        <p matLine>Created</p>
-                      </mat-list-item>
--->
-
                     </mat-list>
                               
               </mat-card-content>
@@ -149,7 +127,7 @@
             <mat-toolbar>
               <mat-card-title>Newsfeed</mat-card-title>
               <span flex></span>
-              <button routerLink="/form" mat-raised-button color="primary" class="text-upper">New Post +</button>
+              <button (click) = "openDialog()" mat-raised-button color="primary" class="text-upper">New Post +</button>
             </mat-toolbar>
               
 
@@ -157,12 +135,31 @@
               <mat-divider></mat-divider>
               <mat-card-content>
               
+              <!-- Only show if there was no article, TODO - write a checker-->
 
-                <div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+                <!-- <div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
                   <mat-icon matListAvatar class="text-super push-bottom">chrome_reader_mode</mat-icon>
                   <h2>No related news articles</h2>
+                </div> -->
 
-                </div>
+                <mat-list>
+                  <ng-template let-item let-i="index" let-last="last" ngFor [ngForOf]="datadata">
+                    <mat-list-item class="pad-top pad-bottom">
+                      <img matListAvatar src="https://picsum.photos/50/50/?image={{i}}" />
+                      <h3 matLine class="cursor-pointer"> Engadget <span class="tc-grey-500 md-caption">11:24 AM</span></h3>
+                      <div matLine>
+                        <div class="text-wrap">
+                          {{ 'Bacon ipsum dolor amet capicola hamburger venison andouille turkey salami pork fatback picanha sirloin short loin short ribs doner flank. Filet mignon ham hock short loin buffalo spare ribs salami shank boudin porchetta. Pig shank ham hock turducken meatball, alcatra chuck strip steak spare ribs.' | truncate:200 }}
+                        </div>
+                      </div>
+                    </mat-list-item>
+                    <mat-divider *ngIf="!last" mat-inset></mat-divider>
+                  </ng-template>
+                </mat-list>
+
+
+
+
 
               
               </mat-card-content>
