@@ -1,5 +1,5 @@
 <div class="rounded-corners">
-    <td-layout>
+    <td-layout color="primary" >
         <td-navigation-drawer flex sidenavTitle="StockX Dashboard" name="Jacob Cao" email="jacob.cao@teradata.com">
           <mat-nav-list>
             <a *ngFor="let item of routes" mat-list-item routerLink={{item.route}} ><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
@@ -104,7 +104,7 @@
                 <mat-toolbar>
                   <mat-card-title>Newsfeed</mat-card-title>
                   <span flex></span>
-                  <button (click) = "openDialog()" mat-raised-button color="primary" class="text-upper">New Post +</button>
+                  <button (click) = "openDialog()" mat-raised-button color="accent" class="text-upper">New Post +</button>
                 </mat-toolbar>
                   
                   <mat-divider></mat-divider>
