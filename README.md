@@ -2,17 +2,20 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
-TdUX is my submission for the Teradata UX project, developed with Angular 5 + Teradata's Covalent.
+TdUX is my submission for the Teradata UX project, developed with Angular 5 + Teradata's Covalent. Majority of the application was developed using the covalent libraries and design.
 
 The main application consists of an Analyst and Consumer page, which can be toggled in the side-nav bar.
 
-# Analyst
+## Analyst Component
 
-Main difference between the consumer page is the addition of a form, potentially used as an "Article Submitter" Form has a wizard-like stepper to ensure user inputs all the correct fields
+Main difference between the consumer page is the addition of a form, potentially used as an "Article Submitter" Form has a wizard-like stepper to ensure user inputs all the correct fields.
 
-# Consumer
+## Consumer Component
 
-Page with the same data, just a different color and no additional buttons. Meant for a "View-Only" experience.
+Page with the same data, just a different color and no additional buttons. Meant for a "View-Only" experience. The page also defaults to the consumer page first. 
+
+
+# Running and Building
 
 ## Development server
 
