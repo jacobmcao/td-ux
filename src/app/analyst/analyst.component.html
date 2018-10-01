@@ -1,3 +1,152 @@
-<p>
-  analyst works!
-</p>
+<div class="rounded-corners">
+    <td-layout>
+        <td-navigation-drawer flex sidenavTitle="StockX Dashboard" name="Jacob Cao" email="jacob.cao@teradata.com">
+          <mat-nav-list>
+            <a *ngFor="let item of routes" mat-list-item routerLink={{item.route}} ><mat-icon>{{item.icon}}</mat-icon>{{item.title}}</a>
+          </mat-nav-list>
+        </td-navigation-drawer>
+      
+        <td-layout-nav color="accent">
+      
+          <div td-toolbar-content layout="row" layout-align="start center" flex>
+            <button mat-icon-button td-menu-button tdLayoutToggle>
+              <mat-icon>menu</mat-icon>
+            </button>
+            <span [routerLink]="['/']" class="cursor-pointer">StockX Dashboard</span>
+            <span flex></span>
+          </div>
+            
+          <td-layout-manage-list #manageList
+                  [opened]="media.registerQuery('gt-sm') | async"
+                  [mode]="(media.registerQuery('gt-sm') | async) ? 'side' :  'over'"
+                  [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+    
+            <mat-toolbar td-sidenav-content>
+              <span>Tracking Assets</span>
+            </mat-toolbar>
+      
+            <!-- Main List -->
+            <mat-nav-list td-sidenav-content [tdLayoutManageListClose]="!media.query('gt-sm')">
+              <ng-template let-item let-last="last" ngFor [ngForOf]="navmenu">
+                <a mat-list-item (click)="globalId(item)">
+                  <mat-icon matListIcon>{{item.icon}}</mat-icon> {{item.title}}
+                </a>
+              </ng-template>
+            </mat-nav-list>
+    
+            <mat-toolbar>
+                <div td-toolbar-content flex layout="row" layout-align="start center">
+                    <button mat-icon-button tdLayoutManageListToggle>
+                      <mat-icon>menu</mat-icon>
+                    </button>
+                    <span hide-xs>Analyst StockX</span>
+                    <span flex></span>   
+                  </div>
+            </mat-toolbar>          
+            <div flex layout-gt-sm="row" tdMediaToggle="gt-xs" layout-wrap [mediaClasses]="['push-sm']">
+              <div flex-gt-sm="50">    
+                <mat-card>
+                  
+                    <mat-toolbar>
+                    <mat-card-title>{{contextualTitle.title}} : Trending</mat-card-title> 
+                    </mat-toolbar>
+                
+                  <mat-divider></mat-divider>
+                  <div [style.height.px]="280" class="push-top-sm">
+                      <ngx-charts-line-chart
+                        [scheme]="{ domain: [ '#4DD0E1', '#BA68C8', '#FF7043' ] }"
+                        [results]="times"
+                        [gradient]="gradient"
+                        [autoScale]="True"
+                        [xAxis]="true"
+                        [yAxis]="true"
+                        [legend]="False"
+                        [showXAxisLabel]="true"
+                        [showYAxisLabel]="true"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        [xAxisTickFormatting]="axisDate">
+                      </ngx-charts-line-chart>
+                    </div>
+                </mat-card> 
+      
+                <mat-card>
+                  <mat-toolbar>
+                  <mat-card-title>{{contextualTitle.description}}</mat-card-title>
+                </mat-toolbar>
+    
+                  <mat-divider></mat-divider>
+                  <mat-card-content>
+                      <mat-list>
+                          <h3 matSubheader>Metadata</h3>
+                           <a *ngFor="let item of contextualData">
+                            <mat-list-item> <mat-icon matListAvatar>account_box</mat-icon><h4 matLine>{{item.CEO}}</h4><p matLine>CEO</p></mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item><mat-icon matListAvatar>description</mat-icon><h4 matLine>{{item.data}}</h4><p matLine>Description</p></mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item><mat-icon matListAvatar>vpn_key</mat-icon><h4 matLine>{{item.data1}}</h4><p matLine>Something Related</p></mat-list-item>
+                          </a> 
+                        </mat-list>
+                                  
+                  </mat-card-content>
+                  <mat-divider></mat-divider>
+                  <mat-card-actions>
+                    <a mat-button color="accent" class="text-upper">
+                      <span>View More</span>
+                    </a>
+                  </mat-card-actions>
+                </mat-card>      
+              </div>
+
+              <div flex-gt-sm="50">
+                <mat-card>
+                    <!-- Separate toolbar delcared for button padding-->
+                <mat-toolbar>
+                  <mat-card-title>Newsfeed</mat-card-title>
+                  <span flex></span>
+                  <button (click) = "openDialog()" mat-raised-button color="primary" class="text-upper">New Post +</button>
+                </mat-toolbar>
+                  
+                  <mat-divider></mat-divider>
+                  <mat-card-content>            
+                  <!-- Only show if there was no article, TODO - write a checker-->
+    
+                    <!-- <div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+                      <mat-icon matListAvatar class="text-super push-bottom">chrome_reader_mode</mat-icon>
+                      <h2>No related news articles</h2>
+                    </div> -->
+                    <mat-list>
+                      <ng-template let-item let-i="index" let-last="last" ngFor [ngForOf]="datadata">
+                        <mat-list-item class="pad-top pad-bottom">
+                          <img matListAvatar src="https://picsum.photos/50/50/?image={{i}}" />
+                          <h3 matLine class="cursor-pointer"> Internet Blog Site <span class="tc-grey-500 md-caption">11:24 AM</span></h3>
+                          <div matLine>
+                            <div class="text-wrap">
+                              {{ 'Bacon ipsum dolor amet capicola hamburger venison andouille turkey salami pork fatback picanha sirloin short loin short ribs doner flank. Filet mignon ham hock short loin buffalo spare ribs salami shank boudin porchetta. Pig shank ham hock turducken meatball, alcatra chuck strip steak spare ribs.' | truncate:200 }}
+                            </div>
+                          </div>
+                        </mat-list-item>
+                        <mat-divider *ngIf="!last" mat-inset></mat-divider>
+                      </ng-template>
+                    </mat-list>    
+                  
+                  </mat-card-content>
+                  <mat-divider></mat-divider>
+                  <mat-card-actions>
+                    <a mat-button color="accent" class="text-upper">
+                      <span>View More</span>
+                    </a>
+                  </mat-card-actions>
+                </mat-card>
+      
+              </div>
+            </div>
+      
+          </td-layout-manage-list>
+        </td-layout-nav>
+      </td-layout>
+      
+    </div>
+      
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      

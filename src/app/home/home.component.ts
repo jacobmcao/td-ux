@@ -39,7 +39,7 @@ single: any = [
 
 routes: Object[] = [{
   icon: 'swap_horiz',
-  route: '.',
+  route: '/analyst',
   title: 'Switch to Analyst View',
 }
 ];
@@ -143,8 +143,6 @@ times: any = [
   ngOnInit() {
       console.log("Initialized Home Page");
       //this.datadata = this.navmenu[0];
-      
-      
   }
 
   ngAfterViewInit(): void {
