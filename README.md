@@ -4,7 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 TdUX is my submission for the Teradata UX project, developed with Angular 5 + Teradata's Covalent. Majority of the application was developed using the covalent libraries and design.
 
-The main application consists of an Analyst and Consumer page, which can be toggled in the side-nav bar.
+The main application consists of an Analyst and Consumer page, which can be toggled in the side-nav bar. The dashboard contains a ngx chart, visualization for a typical stock market trending graph with random values (exaggerated for effect), signifying changes in the market. Also 2 cards, 1 with potential metadata, and 1 with related news articles for the selected stock asset. 
+
+Each stock asset can be viewed as an individual item and the graph will randomize for effect.
 
 ## Analyst Component
 
